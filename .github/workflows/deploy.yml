@@ -1,4 +1,4 @@
-name: Deploy Hexo to GitHub Pages
+name: Deploy Hexo to GitHub Pages with SSH
 
 on:
   push:
@@ -11,6 +11,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -29,14 +38,7 @@ jobs:
         run: npm install
 
       - name: Build and Deploy
-        env:
-          GIT_USER: "codeesura"
-          GIT_EMAIL: "codeesura@gmail.com"
-          TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git config --global user.name "$GIT_USER"
-          git config --global user.email "$GIT_EMAIL"
           npx hexo clean
           npx hexo generate
           npx hexo deploy --debug
-
