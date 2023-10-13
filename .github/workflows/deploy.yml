@@ -32,7 +32,7 @@ jobs:
         env:
           GIT_USER: "codeesura"
           GIT_EMAIL: "codeesura@gmail.com"
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "$GIT_USER"
           git config --global user.email "$GIT_EMAIL"
