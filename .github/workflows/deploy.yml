@@ -21,10 +21,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           
-      - name: Test SSH to GitHub
-        run: |
-          ssh -T git@github.com
-          
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
