@@ -1,0 +1,19 @@
+<% if(page.comments && theme.disqus.enabled){ %>
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript><%= __('comments.no_js') %></noscript>
+        </div>
+    </div>
+<% } %>
+<% if(page.comments && theme.utterances.enabled){ %>
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript><%= __('comments.no_js') %></noscript>
+        </div>
+    </div>
+<% } %>
+<% if(page.comments && theme.waline && theme.waline.enabled){ %>
+    <div class="blog-post-comments">
+        <div id="waline_thread"></div>
+    </div>
+<% } %>
