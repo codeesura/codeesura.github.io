@@ -38,7 +38,12 @@ jobs:
         run: npm install
 
       - name: Build and Deploy
+        env:
+          GIT_USER: "codeesura"
+          GIT_EMAIL: "codeesura@gmail.com"
         run: |
+          git config --global user.name "$GIT_USER"
+          git config --global user.email "$GIT_EMAIL"
           npx hexo clean
           npx hexo generate
           npx hexo deploy --debug
