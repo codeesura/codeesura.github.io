@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Anti-Phishing",
+        "url": "https://github.com/codeesura/Anti-phishing-extension",
+        "desc": "Protects from phishing by scanning visited sites."
+    },
+    {
+        "name": "Ethereum L2 Transaction Tool",
+        "url": "https://github.com/codeesura/Ethereum-Bridge-Transaction-Tool-zkSync-Starknet",
+        "desc": "CLI tool for transactions via Ethereum L2 (zkSync & StarkNet) using flashbots. Developed in Node.js using the ethers.js library."
+    },
+    {
+        "name": "Ethereum Reentrancy Attack Demo",
+        "url": "https://github.com/codeesura/Ethereum-Smart-Contract-and-Attack-Simulation",
+        "desc": "Contains KurbanContract managing user balances and Attack demonstrating a reentrancy vulnerability. A key resource for smart contract security education."
+    },
+    {
+        "name": "Zero-Knowledge Proofs Python Implementation",
+        "url": "https://github.com/codeesura/Zero-Knowledge-Proof-Python-Implementation",
+        "desc": "A Python framework offering ZKP, allowing secure interactions without revealing the actual value, preserving privacy."
+    },
+    {
+        "name": "Ethereum Arbitrage Bot Contract",
+        "url": "https://github.com/codeesura/Ethereum-Arbitrage-Bot",
+        "desc": "Solidity contract for an arbitrage bot leveraging price disparities between Uniswap and Sushiswap DEXs. Uses UniswapV2 and SushiSwap Router interfaces."
+    }
+]
