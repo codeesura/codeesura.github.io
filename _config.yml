@@ -104,4 +104,4 @@ theme: themes/cactus
 deploy:
   type: git
   repo: git@github.com:codeesura/codeesura.github.io.git
-  branch: master
+  branch: gh-pages
