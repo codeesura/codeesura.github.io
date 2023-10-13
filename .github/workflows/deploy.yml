@@ -38,5 +38,5 @@ jobs:
           git config --global user.email "$GIT_EMAIL"
           npx hexo clean
           npx hexo generate
-          npx hexo deploy
+          npx hexo deploy --debug
 
