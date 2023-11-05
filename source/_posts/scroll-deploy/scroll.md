@@ -8,7 +8,7 @@ Hiçbir yazılım bilgisine sahip olmadan, ChatGPT kullanarak Scroll ağına bir
 
 **'Hardhat kullanarak 'X' ağına bir akıllı kontrat yayınlamak istiyorum. Kurulum için gerekli adımları bana verebilir misin?'**
 
-![prompt1](prompt1.png)
+![prompt1](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt1.png)
 
 Bize sağlanan kurulum talimatları ve yapmamız gereken işlemlerin listesini sırasıyla uygulayalım.
 
@@ -80,7 +80,7 @@ Kurulum aşamalarını tamamladık ancak özel bilgilerimizi ve private key'leri
 
 **'Config dosyasındaki "YOUR_PRIVATE_KEY" bölümünü .env dosyasında nasıl tanımlayacağımı gösterebilir misin lütfen?'**
 
-![prompt2](prompt2.png)
+![prompt2](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt2.png)
 
 # Dotenv Kurulumu
 
@@ -142,7 +142,7 @@ Bu adımları takip ederek, akıllı kontrat geliştirme sırasında ortam deği
 
 **'Teşekkür ederim, şimdi basit bir akıllı kontrat örneği ver bu akıllı kontrat ETH alsın ve çekim yapılabilsin ayrıca yatırma ve çekme işlemlerini sadece kontrat sahibi yapabilsin'**
 
-![Alt text](prompt3.png)
+![Alt text](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt3.png)
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -191,6 +191,8 @@ Bu kontratı Hardhat ortamınızda kullanarak derleyebilir, test edebilir ve bir
 Akıllı kontratımız şu anda tek bir Solidity dosyası olarak bulunuyor, ancak modüler bir yapı kullanmak daha faydalı olacak:
 
 **Teşekkürler, şimdi şunu yapmanı istiyorum; yatırma ve çekme işlemlerini yapan fonksiyonları farklı Solidity dosyalarında sakla ve ana kontrattan bu kodlar içeri al lütfen.**
+
+![prompt4](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt4.png)
 
 Akıllı kontrat kodunu modüler hale getirmek ve yeniden kullanılabilirlik sağlamak için, fonksiyonları farklı Solidity dosyalarında saklayabilir ve bunları bir ana kontrat dosyası içerisinden import edebilirsiniz. İşte bu işlemi nasıl yapabileceğiniz aşağıda açıklanmıştır:
 
@@ -256,6 +258,10 @@ Bu yapılandırmada, Deposit ve Withdraw kontratları ayrı Solidity dosyaların
 Kontratı başarıyla oluşturduktan sonra, şimdi sıra bu akıllı kontratı Etherscan üzerinde doğrulamaya geldi. Bu nedenle ChatGPT'ye şöyle sorayım: 
 
 **'Teşekkürler, deploy işlemini tamamladık. Şimdi Etherscan veya benzeri platformlarda akıllı kontratımızın doğrulanmasını nasıl gerçekleştirebilirim?'**
+
+![prompt5](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt5.png)
+
+![prompt6](https://github.com/codeesura/codeesura.github.io/blob/main/source/_posts/scroll-deploy/prompt6.png)
 
 Etherscan'da bir akıllı kontratı doğrulamak (verify), akıllı kontratın kaynak kodunu blok zincirindeki herkesin görebilmesini ve kodu okuyup etkileşimde bulunabilmelerini sağlar. Bu işlem, kontratın şeffaflığını ve güvenilirliğini artırır. Etherscan üzerinde bir kontratı doğrulamak için genellikle aşağıdaki adımları izlersiniz:
 
