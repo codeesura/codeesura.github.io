@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Hiçbir yazılım bilgisine sahip olmadan, ChatGPT kullanarak Scroll ağına bir kontrat yayınlamayı ve onaylamayı nasıl yapabileceğinizi adım adım göstereceğim; hadi promptlarla işe koyulalım… İlk adım ol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz">
+<meta property="og:url" content="https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/index.html">
+<meta property="og:site_name" content="codeesura blog">
+<meta property="og:description" content="Hiçbir yazılım bilgisine sahip olmadan, ChatGPT kullanarak Scroll ağına bir kontrat yayınlamayı ve onaylamayı nasıl yapabileceğinizi adım adım göstereceğim; hadi promptlarla işe koyulalım… İlk adım ol">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt6.png">
+<meta property="article:published_time" content="2023-11-05T21:59:06.931Z">
+<meta property="article:modified_time" content="2023-11-05T21:59:06.931Z">
+<meta property="article:author" content="codeesura">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/abc.gif">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/abc.gif" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/abc.gif">
+        
+      
+    
+    <!-- title -->
+    <title>Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css"/>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2023/10/12/zkp/zkp/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&text=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&is_video=false&description=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz&body=Check out this article: https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&name=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&t=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Genel-Kurulum"><span class="toc-number">1.</span> <span class="toc-text">Genel Kurulum</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-Kurulumu"><span class="toc-number">1.1.</span> <span class="toc-text">Node.js Kurulumu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proje-Dizini-Olusturma-ve-Baslatma"><span class="toc-number">1.2.</span> <span class="toc-text">Proje Dizini Oluşturma ve Başlatma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-ve-Gerekli-Paketleri-Kurma"><span class="toc-number">1.3.</span> <span class="toc-text">Hardhat ve Gerekli Paketleri Kurma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-Projesini-Baslatma"><span class="toc-number">1.4.</span> <span class="toc-text">Hardhat Projesini Başlatma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ag-Yapilandirmasi"><span class="toc-number">1.5.</span> <span class="toc-text">Ağ Yapılandırması</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dotenv-Kurulumu"><span class="toc-number">2.</span> <span class="toc-text">Dotenv Kurulumu</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dotenv-Paketini-Kurma"><span class="toc-number">2.1.</span> <span class="toc-text">Dotenv Paketini Kurma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#env-Dosyasi-Olusturma"><span class="toc-number">2.2.</span> <span class="toc-text">.env Dosyası Oluşturma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-Yapilandirma-Dosyasinda-Dotenv-Kullanma"><span class="toc-number">2.3.</span> <span class="toc-text">Hardhat Yapılandırma Dosyasında Dotenv Kullanma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore-Dosyasi"><span class="toc-number">2.4.</span> <span class="toc-text">.gitignore Dosyası</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dogrulama-Adimlari"><span class="toc-number">2.4.1.</span> <span class="toc-text">Doğrulama Adımları:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dogrulama-Islemi"><span class="toc-number">2.4.2.</span> <span class="toc-text">Doğrulama İşlemi:</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">codeesura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-11-05T21:59:06.931Z" class="dt-published" itemprop="datePublished">2023-11-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Hiçbir yazılım bilgisine sahip olmadan, ChatGPT kullanarak Scroll ağına bir kontrat yayınlamayı ve onaylamayı nasıl yapabileceğinizi adım adım göstereceğim; hadi promptlarla işe koyulalım…</p>
+<p>İlk adım olarak, aklımızdaki fikri yazıya döküyoruz: </p>
+<p><strong>‘Hardhat kullanarak ‘X’ ağına bir akıllı kontrat yayınlamak istiyorum. Kurulum için gerekli adımları bana verebilir misin?’</strong></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt1.png" alt="prompt1"></p>
+<p>Bize sağlanan kurulum talimatları ve yapmamız gereken işlemlerin listesini sırasıyla uygulayalım.</p>
+<h1 id="Genel-Kurulum"><a href="#Genel-Kurulum" class="headerlink" title="Genel Kurulum"></a>Genel Kurulum</h1><h2 id="Node-js-Kurulumu"><a href="#Node-js-Kurulumu" class="headerlink" title="Node.js Kurulumu"></a>Node.js Kurulumu</h2><p>Hardhat Node.js üzerinde çalışır, eğer sisteminizde yoksa <a target="_blank" rel="noopener" href="https://nodejs.org/en">Node.js’in resmi web sitesinden</a> indirip kurun.</p>
+<h2 id="Proje-Dizini-Olusturma-ve-Baslatma"><a href="#Proje-Dizini-Olusturma-ve-Baslatma" class="headerlink" title="Proje Dizini Oluşturma ve Başlatma"></a>Proje Dizini Oluşturma ve Başlatma</h2><p>Terminalinizi açın ve yeni bir proje dizini oluşturun ve bu dizine gidin:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> MyHardhatProject</span><br><span class="line"><span class="built_in">cd</span> MyHardhatProject</span><br></pre></td></tr></table></figure>
+
+<p>Node projesini başlatın:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hardhat-ve-Gerekli-Paketleri-Kurma"><a href="#Hardhat-ve-Gerekli-Paketleri-Kurma" class="headerlink" title="Hardhat ve Gerekli Paketleri Kurma"></a>Hardhat ve Gerekli Paketleri Kurma</h2><p>Hardhat ve diğer gerekli paketleri projenize ekleyin:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev hardhat</span><br></pre></td></tr></table></figure>
+
+<p>Eğer OpenZeppelin gibi kontrat kitaplıkları veya ethers.js&#x2F;waffle gibi test kütüphaneleri kullanacaksanız, bunları da şimdi kurabilirsiniz:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @openzeppelin/contracts ethers chai</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hardhat-Projesini-Baslatma"><a href="#Hardhat-Projesini-Baslatma" class="headerlink" title="Hardhat Projesini Başlatma"></a>Hardhat Projesini Başlatma</h2><p>Hardhat projesini başlatmak için:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat</span><br></pre></td></tr></table></figure>
+
+<p>Bu komut, yapılandırma dosyasını <code>hardhat.config.js</code> oluşturmak ve bir örnek akıllı kontrat ve test dosyası eklemek için size bir dizi seçenek sunar.</p>
+<h2 id="Ag-Yapilandirmasi"><a href="#Ag-Yapilandirmasi" class="headerlink" title="Ağ Yapılandırması"></a>Ağ Yapılandırması</h2><p><code>hardhat.config.js</code> dosyasını düzenleyin ve deploy etmek istediğiniz ağa ilişkin yapılandırmaları ekleyin. Eğer bu Ethereum ana ağı veya bir Ethereum test ağı ise, aşağıdaki gibi bir yapılandırma örneği kullanabilirsiniz:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@nomiclabs/hardhat-waffle&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">solidity</span>: <span class="string">&quot;0.8.4&quot;</span>,</span><br><span class="line">  <span class="attr">networks</span>: &#123;</span><br><span class="line">    <span class="attr">ropsten</span>: &#123;</span><br><span class="line">      <span class="attr">url</span>: <span class="string">&quot;https://ropsten.infura.io/v3/YOUR_INFURA_PROJECT_ID&quot;</span>, <span class="comment">// Infura kullanıyorsanız</span></span><br><span class="line">      <span class="attr">accounts</span>: [<span class="string">`0x<span class="subst">$&#123;YOUR_PRIVATE_KEY&#125;</span>`</span>] <span class="comment">// Private key&#x27;inizi buraya ekleyin</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// Diğer ağ yapılandırmalarınız da buraya eklenebilir.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Kurulum aşamalarını tamamladık ancak özel bilgilerimizi ve private key’leri bir &#96;.env&#96;&#96; dosyasında saklamak daha güvenli olacaktır. ChatGPT’ye soralım:</p>
+<p><strong>‘Config dosyasındaki “YOUR_PRIVATE_KEY” bölümünü .env dosyasında nasıl tanımlayacağımı gösterebilir misin lütfen?’</strong></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt2.png" alt="prompt2"></p>
+<h1 id="Dotenv-Kurulumu"><a href="#Dotenv-Kurulumu" class="headerlink" title="Dotenv Kurulumu"></a>Dotenv Kurulumu</h1><h2 id="Dotenv-Paketini-Kurma"><a href="#Dotenv-Paketini-Kurma" class="headerlink" title="Dotenv Paketini Kurma"></a>Dotenv Paketini Kurma</h2><p>Projenize <code>dotenv</code> paketini ekleyin:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install dotenv --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="env-Dosyasi-Olusturma"><a href="#env-Dosyasi-Olusturma" class="headerlink" title=".env Dosyası Oluşturma"></a>.env Dosyası Oluşturma</h2><p>Proje kök dizininde <code>.env</code> dosyası oluşturun ve özel anahtarınızı buraya ekleyin. Dosya içeriği şuna benzer olacak:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PRIVATE_KEY=burayaözelanahtarınızıyazın</span><br></pre></td></tr></table></figure>
+
+<p>Bu dosyayı asla git gibi versiyon kontrol sistemlerine yüklememeye özen gösterin. <code>.gitignore</code> dosyanıza <code>.env</code> eklemeyi unutmayın.</p>
+<h2 id="Hardhat-Yapilandirma-Dosyasinda-Dotenv-Kullanma"><a href="#Hardhat-Yapilandirma-Dosyasinda-Dotenv-Kullanma" class="headerlink" title="Hardhat Yapılandırma Dosyasında Dotenv Kullanma"></a>Hardhat Yapılandırma Dosyasında Dotenv Kullanma</h2><p><code>hardhat.config.js</code> dosyanızın başında dotenv paketini yükleyin ve ortam değişkenlerinizi bu şekilde kullanın:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;dotenv&quot;</span>).<span class="title function_">config</span>();</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@nomiclabs/hardhat-waffle&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="variable constant_">PRIVATE_KEY</span>, <span class="variable constant_">INFURA_PROJECT_ID</span> &#125; = process.<span class="property">env</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">solidity</span>: <span class="string">&quot;0.8.4&quot;</span>,</span><br><span class="line">  <span class="attr">networks</span>: &#123;</span><br><span class="line">    <span class="attr">ropsten</span>: &#123;</span><br><span class="line">      <span class="attr">url</span>: <span class="string">`https://ropsten.infura.io/v3/<span class="subst">$&#123;INFURA_PROJECT_ID&#125;</span>`</span>,</span><br><span class="line">      <span class="attr">accounts</span>: [<span class="string">`0x<span class="subst">$&#123;PRIVATE_KEY&#125;</span>`</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// Diğer ağ yapılandırmaları</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Bu değişiklikle, <code>PRIVATE_KEY</code> ve <code>INFURA_PROJECT_ID</code> değerleri .env dosyasından alınacak ve kodunuzun içinde doğrudan görünmeyecek.</p>
+<h2 id="gitignore-Dosyasi"><a href="#gitignore-Dosyasi" class="headerlink" title=".gitignore Dosyası"></a>.gitignore Dosyası</h2><p>Projenizde .gitignore dosyası olduğundan emin olun ve içine .env dosyasını ekleyin, böylece bu dosya yanlışlıkla bir versiyon kontrol sistemine yüklenmez.</p>
+<p><code>.gitignore</code> dosyanıza şunları ekleyebilirsiniz:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.env</span><br><span class="line">node_modules/</span><br></pre></td></tr></table></figure>
+
+<p>Bu adımları takip ederek, akıllı kontrat geliştirme sırasında ortam değişkenlerinizi güvenli bir şekilde yönetebilir ve kullanabilirsiniz.</p>
+<p>Şimdi ise basit bir akıllı kontrat örneği isteyelim:</p>
+<p><strong>‘Teşekkür ederim, şimdi basit bir akıllı kontrat örneği ver bu akıllı kontrat ETH alsın ve çekim yapılabilsin ayrıca yatırma ve çekme işlemlerini sadece kontrat sahibi yapabilsin’</strong></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt3.png" alt="Alt text"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract SimpleWallet &#123;</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender; // Kontratı yaratan kişiyi sahip olarak belirle</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Bu fonksiyon kontrata yatırılan Ether miktarını kaydeder</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Only the owner can deposit Ether&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Bu fonksiyon kontrata gönderilen Ether&#x27;i kabul etmek için gereklidir</span><br><span class="line">    fallback() external payable &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Only the owner can deposit Ether&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Kontrat sahibinin kontrattaki tüm Ether&#x27;i çekmesini sağlar</span><br><span class="line">    function withdraw(uint _amount) external &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Only the owner can withdraw Ether&quot;);</span><br><span class="line">        payable(owner).transfer(_amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Kontrattaki Ether bakiyesini döndürür</span><br><span class="line">    function getBalance() external view returns (uint) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Bu akıllı kontratta aşağıdaki fonksiyonlar bulunmaktadır:</p>
+<ul>
+<li><strong>Constructor:</strong> Akıllı kontrat oluşturulduğunda çağrılır ve <code>msg.sender</code> değerini, yani kontratı oluşturan kişiyi kontratın sahibi olarak atar.</li>
+<li><strong>Receive:</strong> Kontratın ETH kabul etmesini sağlar. Bu fonksiyon, kontrata doğrudan Ether gönderildiğinde çağrılır ve sadece sahibin yatırma işlemi yapmasına izin verir.</li>
+<li><strong>Fallback:</strong> Kontrata fonksiyon çağrısı dışında Ether gönderildiğinde çağrılır ve sadece sahibin yatırma işlemi yapmasına izin verir.</li>
+<li><strong>Withdraw:</strong> Kontrattaki belirli bir miktarda Ether’i çekmek için kullanılır. Yine sadece sahibin çekim yapmasına izin verir.</li>
+<li><strong>GetBalance:</strong> Kontratın mevcut Ether bakiyesini döndürür.</li>
+</ul>
+<p>Bu kontratı Hardhat ortamınızda kullanarak derleyebilir, test edebilir ve bir Ethereum ağına (ana ağ veya test ağı) deploy edebilirsiniz. Ancak, her zaman gerçek Ether’le çalışmadan önce test ağlarında akıllı kontratlarınızı test etmeniz önerilir.</p>
+<p>Akıllı kontratımız şu anda tek bir Solidity dosyası olarak bulunuyor, ancak modüler bir yapı kullanmak daha faydalı olacak:</p>
+<p><strong>Teşekkürler, şimdi şunu yapmanı istiyorum; yatırma ve çekme işlemlerini yapan fonksiyonları farklı Solidity dosyalarında sakla ve ana kontrattan bu kodlar içeri al lütfen.</strong></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt4.png" alt="prompt4"></p>
+<p>Akıllı kontrat kodunu modüler hale getirmek ve yeniden kullanılabilirlik sağlamak için, fonksiyonları farklı Solidity dosyalarında saklayabilir ve bunları bir ana kontrat dosyası içerisinden import edebilirsiniz. İşte bu işlemi nasıl yapabileceğiniz aşağıda açıklanmıştır:</p>
+<p>Öncelikle yatırma işlemlerini gerçekleştiren <code>Deposit.sol</code> adında bir dosya oluşturun:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">// Deposit.sol</span><br><span class="line">contract Deposit &#123;</span><br><span class="line">    // Bu fonksiyon kontrata yatırılan Ether miktarını kaydeder</span><br><span class="line">    receive() external payable &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Bu fonksiyon kontrata gönderilen Ether&#x27;i kabul etmek için gereklidir</span><br><span class="line">    fallback() external payable &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Ardından, çekme işlemlerini gerçekleştiren <code>Withdraw.sol</code> adında bir dosya oluşturun:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">// Withdraw.sol</span><br><span class="line">contract Withdraw &#123;</span><br><span class="line">    address internal owner;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Kontrat sahibinin kontrattaki tüm Ether&#x27;i çekmesini sağlar</span><br><span class="line">    function withdraw(uint _amount) external &#123;</span><br><span class="line">        require(msg.sender == owner, &quot;Only the owner can withdraw Ether&quot;);</span><br><span class="line">        payable(msg.sender).transfer(_amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ve son olarak, bu iki kontratı içe aktarıp kullanan ana <code>Wallet.sol</code> kontratını oluşturun:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">import &quot;./Deposit.sol&quot;;</span><br><span class="line">import &quot;./Withdraw.sol&quot;;</span><br><span class="line"></span><br><span class="line">// Wallet.sol</span><br><span class="line">contract Wallet is Deposit, Withdraw &#123;</span><br><span class="line">    // Kontrattaki Ether bakiyesini döndürür</span><br><span class="line">    function getBalance() external view returns (uint) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Bu yapılandırmada, Deposit ve Withdraw kontratları ayrı Solidity dosyalarında tanımlanmış ve Wallet kontratı tarafından extend edilmiştir (is anahtar kelimesiyle). <code>Wallet</code> kontratı, <code>Deposit</code> ve <code>Withdraw</code> kontratlarının özelliklerini ve fonksiyonlarını miras alır ve birleştirir. Wallet kontratı aynı zamanda kendi özgün getBalance fonksiyonuna da sahiptir.</p>
+<p>Kontratı başarıyla oluşturduktan sonra, şimdi sıra bu akıllı kontratı Etherscan üzerinde doğrulamaya geldi. Bu nedenle ChatGPT’ye şöyle sorayım: </p>
+<p><strong>‘Teşekkürler, deploy işlemini tamamladık. Şimdi Etherscan veya benzeri platformlarda akıllı kontratımızın doğrulanmasını nasıl gerçekleştirebilirim?’</strong></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt5.png" alt="prompt5"></p>
+<p><img src="https://raw.githubusercontent.com/codeesura/codeesura.github.io/main/source/_posts/scroll-deploy/prompt6.png" alt="prompt6"></p>
+<p>Etherscan’da bir akıllı kontratı doğrulamak (verify), akıllı kontratın kaynak kodunu blok zincirindeki herkesin görebilmesini ve kodu okuyup etkileşimde bulunabilmelerini sağlar. Bu işlem, kontratın şeffaflığını ve güvenilirliğini artırır. Etherscan üzerinde bir kontratı doğrulamak için genellikle aşağıdaki adımları izlersiniz:</p>
+<h3 id="Dogrulama-Adimlari"><a href="#Dogrulama-Adimlari" class="headerlink" title="Doğrulama Adımları:"></a>Doğrulama Adımları:</h3><ul>
+<li><p>Kontrat Adresi: Deploy edilen akıllı kontratın adresini bilmeniz gerekiyor.</p>
+</li>
+<li><p>Kaynak Kodu: Akıllı kontratın tam kaynak kodunu, import edilen tüm dosyalarla birlikte hazır bulundurmalısınız.</p>
+</li>
+<li><p>Compiler Sürümü: Kontratı deploy ederken kullanılan Solidity compiler’ın sürümü kesinlikle aynı olmalıdır.</p>
+</li>
+<li><p>Optimizasyon Ayarları: Eğer kontrat deploy edilirken optimizasyon kullanıldıysa, aynı optimizasyon ayarlarını kullanmalısınız.</p>
+</li>
+<li><p>Constructor Argümanları: Eğer kontratın bir constructor fonksiyonu varsa ve parametre alıyorsa, deploy ederken kullanılan parametrelerin ABI-encoded versiyonuna ihtiyacınız olacak.</p>
+</li>
+<li><p>Flattened Kod: Eğer kontratınız birden fazla dosyadan oluşuyorsa, Etherscan genellikle tek bir dosya şeklinde düzleştirilmiş (flattened) kod bekler. Flattened kod, tüm import edilen dosyaların tek bir dosya içinde birleştirilmiş halidir.</p>
+</li>
+<li><p>Lisans: Etherscan, doğrulama sırasında kontratın hangi lisans altında yayınlandığını bilmek ister. Doğru lisansı seçmelisiniz.</p>
+</li>
+</ul>
+<h3 id="Dogrulama-Islemi"><a href="#Dogrulama-Islemi" class="headerlink" title="Doğrulama İşlemi:"></a>Doğrulama İşlemi:</h3><p>Bu bilgilere sahip olduktan sonra doğrulama işlemi için genellikle aşağıdaki adımları takip edersiniz:</p>
+<ol>
+<li><p>Etherscan türevi olan ve deploy edilen ağa ait blokzinciri gezginine gidin (örneğin: Ropsten için ropsten.etherscan.io).</p>
+</li>
+<li><p>Akıllı kontratın adresini arama çubuğuna yapıştırın ve kontrat sayfasını açın.</p>
+</li>
+<li><p>“Contract” sekmesine tıklayın ve “Verify and Publish” linkine tıklayın.</p>
+</li>
+</ol>
+<p>Gerekli bilgileri doldurun:</p>
+<ol start="4">
+<li>Compiler sürümünü seçin.<br>Optimizasyon kullanılıp kullanılmadığını ve ayarlarını belirtin.<br>Kaynak kodunu, constructor parametrelerini (varsa), ve diğer gereken bilgileri girin.<br>“Verify and Publish” butonuna tıklayarak süreci tamamlayın.</li>
+</ol>
+<p>Eğer Hardhat kullanıyorsanız, bu işlemi otomatikleştirmek için hardhat-etherscan eklentisini kullanabilirsiniz. Eklentiyi projenize dahil ettikten sonra, Hardhat script’i üzerinden doğrulama yapabilirsiniz. İlk olarak eklentiyi yükleyin:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev @nomiclabs/hardhat-etherscan</span><br></pre></td></tr></table></figure>
+
+<p><code>hardhat.config.js</code> dosyasında eklentiyi yapılandırın ve Etherscan API anahtarınızı ekleyin:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">&quot;@nomiclabs/hardhat-etherscan&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="comment">// ... diğer yapılandırmalar</span></span><br><span class="line">  <span class="attr">etherscan</span>: &#123;</span><br><span class="line">    <span class="attr">apiKey</span>: <span class="string">&quot;ETHERSCAN_API_KEY&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Deployment script’inizi çalıştırdıktan sonra, kontratı Hardhat ile doğrulayabilirsiniz:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hardhat verify --network &lt;network_name&gt; DEPLOYED_CONTRACT_ADDRESS <span class="string">&quot;Constructor argument 1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;network_name&gt;</code> yerine kullanmak istediğiniz ağı (örneğin mainnet, ropsten, rinkeby vb.), <code>DEPLOYED_CONTRACT_ADDRESS</code> yerine kontratınızın adresini, ve eğer varsa constructor argümanlarını ekleyin.</p>
+<p>Bu komut otomatik olarak gerekli bilgileri Etherscan’a gönderir ve doğrulama işlemini başlatır.</p>
+
+  </div>
+</article>
+
+
+
+    <div class="blog-post-comments">
+        <div id="waline_thread"></div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Genel-Kurulum"><span class="toc-number">1.</span> <span class="toc-text">Genel Kurulum</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-Kurulumu"><span class="toc-number">1.1.</span> <span class="toc-text">Node.js Kurulumu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proje-Dizini-Olusturma-ve-Baslatma"><span class="toc-number">1.2.</span> <span class="toc-text">Proje Dizini Oluşturma ve Başlatma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-ve-Gerekli-Paketleri-Kurma"><span class="toc-number">1.3.</span> <span class="toc-text">Hardhat ve Gerekli Paketleri Kurma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-Projesini-Baslatma"><span class="toc-number">1.4.</span> <span class="toc-text">Hardhat Projesini Başlatma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ag-Yapilandirmasi"><span class="toc-number">1.5.</span> <span class="toc-text">Ağ Yapılandırması</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Dotenv-Kurulumu"><span class="toc-number">2.</span> <span class="toc-text">Dotenv Kurulumu</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dotenv-Paketini-Kurma"><span class="toc-number">2.1.</span> <span class="toc-text">Dotenv Paketini Kurma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#env-Dosyasi-Olusturma"><span class="toc-number">2.2.</span> <span class="toc-text">.env Dosyası Oluşturma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hardhat-Yapilandirma-Dosyasinda-Dotenv-Kullanma"><span class="toc-number">2.3.</span> <span class="toc-text">Hardhat Yapılandırma Dosyasında Dotenv Kullanma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gitignore-Dosyasi"><span class="toc-number">2.4.</span> <span class="toc-text">.gitignore Dosyası</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dogrulama-Adimlari"><span class="toc-number">2.4.1.</span> <span class="toc-text">Doğrulama Adımları:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dogrulama-Islemi"><span class="toc-number">2.4.2.</span> <span class="toc-text">Doğrulama İşlemi:</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&text=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&is_video=false&description=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz&body=Check out this article: https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&title=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&name=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://codeesura.github.io/2023/11/05/scroll-deploy/scroll/&t=Hardhat ile Sıfır Yazılım Bilgisiyle Scroll Ağına Akıllı Kontrat Nasıl Yayınlanır: Adım Adım Kılavuz"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    codeesura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+    var EMOJI = ['//unpkg.com/@waline/emojis@1.2.0/weibo']
+    var META = ['nick', 'mail', 'link'];
+    var REQUIREDFIELDS = ['nick', 'mail', 'link'];
+
+    var emoji = '//unpkg.com/@waline/emojis@1.2.0/qq'.split(',').filter(function(item){
+      return item !== '';
+    });
+    emoji = emoji.length == 0 ? EMOJI : emoji;
+
+    var meta = 'nick,mail'.split(',').filter(function(item){
+      return META.indexOf(item) > -1;
+    });
+    meta = meta.length == 0 ? META : meta;
+
+    var requiredFields = 'nick,mail'.split(',').filter(function(item){
+      return REQUIREDFIELDS.indexOf(item) > -1;
+    });
+    requiredFields = requiredFields.length == 0 ? REQUIREDFIELDS : requiredFields;
+
+    init({
+      el: '#waline_thread',
+      serverURL: 'https://codeesura-blog.vercel.app/',
+      path: '' == '' ? window.location.pathname : '',
+      lang: 'en-EN' == '' ? 'en-EN' : 'en-EN',
+      emoji: emoji,
+      dark: '',
+      commentSorting: '' == '' ? 'latest' : '',
+      meta: meta,
+      requiredFields: requiredFields,
+      login: '',
+      wordLimit: '',
+      pageSize: '10' == '' ? 10 : '10',
+      imageUploader: '',
+      highlighter: '',
+      placeholder: '',
+      avatar: 'mm',
+      visitor: 'false',
+      comment_count: 'false',
+    });
+  </script>
+
+</body>
+</html>

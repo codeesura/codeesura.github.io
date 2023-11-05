@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="The Magic of zk-SNARKs: Unraveling the Mystique with Tangible ScenariosZero-Knowledge Proofs (ZKPs) have carved a niche as a game-changing cryptographic marvel. They empower one entity to vouch for a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Magic of zk-SNARKs: A Deep Dive">
+<meta property="og:url" content="https://codeesura.github.io/2023/10/12/zkp/zkp/index.html">
+<meta property="og:site_name" content="codeesura blog">
+<meta property="og:description" content="The Magic of zk-SNARKs: Unraveling the Mystique with Tangible ScenariosZero-Knowledge Proofs (ZKPs) have carved a niche as a game-changing cryptographic marvel. They empower one entity to vouch for a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-12T01:33:22.000Z">
+<meta property="article:modified_time" content="2023-11-05T21:59:06.935Z">
+<meta property="article:author" content="codeesura">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/abc.gif">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/abc.gif" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/abc.gif">
+        
+      
+    
+    <!-- title -->
+    <title>The Magic of zk-SNARKs: A Deep Dive</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css"/>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2023/11/05/scroll-deploy/scroll/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://codeesura.github.io/2023/10/12/zkp/zkp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&text=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&is_video=false&description=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=The Magic of zk-SNARKs: A Deep Dive&body=Check out this article: https://codeesura.github.io/2023/10/12/zkp/zkp/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&name=The Magic of zk-SNARKs: A Deep Dive&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://codeesura.github.io/2023/10/12/zkp/zkp/&t=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Magic-of-zk-SNARKs-Unraveling-the-Mystique-with-Tangible-Scenarios"><span class="toc-number">1.</span> <span class="toc-text">The Magic of zk-SNARKs: Unraveling the Mystique with Tangible Scenarios</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        The Magic of zk-SNARKs: A Deep Dive
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">codeesura</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-12T01:33:22.000Z" class="dt-published" itemprop="datePublished">2023-10-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="The-Magic-of-zk-SNARKs-Unraveling-the-Mystique-with-Tangible-Scenarios"><a href="#The-Magic-of-zk-SNARKs-Unraveling-the-Mystique-with-Tangible-Scenarios" class="headerlink" title="The Magic of zk-SNARKs: Unraveling the Mystique with Tangible Scenarios"></a>The Magic of zk-SNARKs: Unraveling the Mystique with Tangible Scenarios</h1><p>Zero-Knowledge Proofs (ZKPs) have carved a niche as a game-changing cryptographic marvel. They empower one entity to vouch for a fact’s truth to another, all while keeping the fact’s specifics under wraps. Among the ZKP galaxy, zk-SNARKs shine the brightest, thanks to their brevity and no-need-for-chit-chat nature.</p>
+<p>In essence, zk-SNARKs are the magicians that allow a prover to whisper to a verifier that they hold a secret, or have done a specific task, without spilling the beans about the secret or the task’s nitty-gritty. This magic trick is orchestrated through a symphony of math and cryptography.</p>
+<p><strong>For Instance:</strong> Picture Alice, eager to assure Bob she’s crossed 18, but without broadcasting her age. With zk-SNARKs as her wand, Alice can vouch for her age eligibility, keeping her birth year a mystery.</p>
+<p>The allure of “succinct” in zk-SNARKs is its promise of brief proofs that are lightning-fast to verify, no matter how gargantuan the data or intricate the task. This trait is a godsend, especially in arenas like blockchain, where speed and scale are the name of the game.</p>
+<p>The “no chit-chat” charm of zk-SNARKs ensures the prover and verifier don’t indulge in a ping-pong of words to seal the proof’s authenticity. The prover crafts a singular proof, and the verifier, like a lone detective, checks it. This solo act is choreographed using a shared reference tune, accessible to both the maestro and the audience.</p>
+<p><strong>Visualize This:</strong> In a democratic dance of voting, a citizen can vouch for their right to vote, all while shrouded in anonymity. The system, like a vigilant judge, verifies the claim, ensuring a dance of both privacy and authenticity.</p>
+<p>zk-SNARKs’ crowning jewel is its prowess in guarding transaction secrets on blockchains. In the transparent world of blockchain, every transaction detail, from the amount to the participants, is on display. But with zk-SNARKs as the guardian, these details can be cloaked, yet their authenticity vouched for. This magic has birthed cryptos like Zcash, where zk-SNARKs are the knights ensuring transaction privacy.</p>
+<p><strong>Imagine:</strong> John, eager to send coins to Jane in the crypto realm. With zk-SNARKs as the gatekeeper, the transaction’s authenticity is stamped, but the amount and the players remain a well-guarded secret.</p>
+<p>zk-SNARKs also moonlight in the domain of verifiable tasks. They enable a user to delegate a task to a third wheel and get an authenticity stamp, without retracing the task steps. This is a boon when the task is a behemoth, but its authenticity is non-negotiable.</p>
+<p>However, zk-SNARKs aren’t without their Achilles’ heel. The looming shadow is the need for a trust pact during setup. This pact crafts the shared reference tune. If this pact is breached, fake authenticity stamps can be crafted. But hope isn’t lost, as cryptographers are on a quest to craft zk-SNARKs that either bypass this trust pact or minimize its risks.</p>
+<p>To wrap up, zk-SNARKs are the modern-day cryptographic sorcerers, weaving spells of privacy and authenticity. As the quest for knowledge continues, the zk-SNARKs realm promises more enchantments, reinforcing its stature as the bedrock of today’s cryptographic landscape.</p>
+
+  </div>
+</article>
+
+
+
+    <div class="blog-post-comments">
+        <div id="waline_thread"></div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#The-Magic-of-zk-SNARKs-Unraveling-the-Mystique-with-Tangible-Scenarios"><span class="toc-number">1.</span> <span class="toc-text">The Magic of zk-SNARKs: Unraveling the Mystique with Tangible Scenarios</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://codeesura.github.io/2023/10/12/zkp/zkp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&text=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&is_video=false&description=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=The Magic of zk-SNARKs: A Deep Dive&body=Check out this article: https://codeesura.github.io/2023/10/12/zkp/zkp/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&title=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://codeesura.github.io/2023/10/12/zkp/zkp/&name=The Magic of zk-SNARKs: A Deep Dive&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://codeesura.github.io/2023/10/12/zkp/zkp/&t=The Magic of zk-SNARKs: A Deep Dive"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    codeesura
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/codeesura">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+    var EMOJI = ['//unpkg.com/@waline/emojis@1.2.0/weibo']
+    var META = ['nick', 'mail', 'link'];
+    var REQUIREDFIELDS = ['nick', 'mail', 'link'];
+
+    var emoji = '//unpkg.com/@waline/emojis@1.2.0/qq'.split(',').filter(function(item){
+      return item !== '';
+    });
+    emoji = emoji.length == 0 ? EMOJI : emoji;
+
+    var meta = 'nick,mail'.split(',').filter(function(item){
+      return META.indexOf(item) > -1;
+    });
+    meta = meta.length == 0 ? META : meta;
+
+    var requiredFields = 'nick,mail'.split(',').filter(function(item){
+      return REQUIREDFIELDS.indexOf(item) > -1;
+    });
+    requiredFields = requiredFields.length == 0 ? REQUIREDFIELDS : requiredFields;
+
+    init({
+      el: '#waline_thread',
+      serverURL: 'https://codeesura-blog.vercel.app/',
+      path: '' == '' ? window.location.pathname : '',
+      lang: 'en-EN' == '' ? 'en-EN' : 'en-EN',
+      emoji: emoji,
+      dark: '',
+      commentSorting: '' == '' ? 'latest' : '',
+      meta: meta,
+      requiredFields: requiredFields,
+      login: '',
+      wordLimit: '',
+      pageSize: '10' == '' ? 10 : '10',
+      imageUploader: '',
+      highlighter: '',
+      placeholder: '',
+      avatar: 'mm',
+      visitor: 'false',
+      comment_count: 'false',
+    });
+  </script>
+
+</body>
+</html>
